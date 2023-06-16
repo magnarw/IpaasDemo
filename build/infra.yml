@@ -15,7 +15,7 @@ stages:
 - stage: Dev
   jobs:
   - deployment: Deploy
-    displayName: Deploy infrastrucre 
+    displayName: Deploy dev 
     environment: Dev
     strategy:
       runOnce:
@@ -30,6 +30,27 @@ stages:
                 deploymentName: $(Build.BuildNumber)
                 location: $(deploymentDefaultLocation)
                 resourceGroupName: po-dev-rg
+                csmFile: infra/main.bicep
+                csmParametersFile: infra/main.parameters-dev.json  # Replace with the path to your Bicep parameter file (parameters.json)
+                deploymentOutputs: 'deploymentOutputs.txt'
+- stage: Prod
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy dev 
+    environment: Prod
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: self
+            - task: AzureResourceManagerTemplateDeployment@3
+              name: DeployBicepFile
+              displayName: Deploy Bicep file
+              inputs:
+                connectedServiceName: dev-azure
+                deploymentName: $(Build.BuildNumber)
+                location: $(deploymentDefaultLocation)
+                resourceGroupName: po-prod-rg
                 csmFile: infra/main.bicep
                 csmParametersFile: infra/main.parameters-dev.json  # Replace with the path to your Bicep parameter file (parameters.json)
                 deploymentOutputs: 'deploymentOutputs.txt'
