@@ -30,6 +30,6 @@ stages:
                 deploymentName: $(Build.BuildNumber)
                 location: $(deploymentDefaultLocation)
                 resourceGroupName: po-dev-rg
-                csmFile: infra/main.bicep
-                csmParametersFile: 'main.parameters-dev.json'  # Replace with the path to your Bicep parameter file (parameters.json)
+                csmFile: ../infra/main.bicep
+                csmParametersFile: '..infra//main.parameters-dev.json'  # Replace with the path to your Bicep parameter file (parameters.json)
                 deploymentOutputs: 'deploymentOutputs.txt'
