@@ -7,6 +7,22 @@
       },
       "queueName": {
         "value": "po-inbound"
+      },
+      "storageAccountName": {
+        "value": "postoragesadev"
+      },
+      "applicationInsightsName": {
+        "value": "poaidev"
+      },
+      "functionAppName": {
+        "value": "po-out-bound-fa-dev"
+      },
+      "hostingPlanName": {
+        "value": "po-asp-dev"
       }
+
+      
     }
+
+    
   }
